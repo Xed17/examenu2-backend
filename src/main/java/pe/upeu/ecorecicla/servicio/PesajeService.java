@@ -97,6 +97,7 @@ public class PesajeService {
         pesaje.setPesoBruto(req.pesoBruto());
         pesaje.setTara(req.tara());
         pesaje.setPesoNeto(pesoNeto);
+        pesaje.setHumedadEstimada(req.humedadEstimada());
         pesaje.setObservacion(req.observacion());
         pesaje.setOperario(operario);
         pesaje.setEstado(EstadoPesaje.REGISTRADO);
@@ -157,6 +158,7 @@ public class PesajeService {
         pesaje.setPesoBruto(req.pesoBruto());
         pesaje.setTara(req.tara());
         pesaje.setPesoNeto(nuevoNeto);
+        pesaje.setHumedadEstimada(req.humedadEstimada());
         pesaje.setObservacion(req.observacion());
         pesaje.setEstado(EstadoPesaje.CORREGIDO);
         pesaje.setActualizadoEn(Instant.now(clock));
@@ -195,6 +197,7 @@ public class PesajeService {
             p.getPesoBruto(),
             p.getTara(),
             p.getPesoNeto(),
+            p.getHumedadEstimada(),
             p.getObservacion(),
             p.getOperario().getId(),
             p.getOperario().getNombre(),
@@ -204,3 +207,4 @@ public class PesajeService {
         );
     }
 }
+
