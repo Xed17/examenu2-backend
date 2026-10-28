@@ -31,6 +31,9 @@ public class Pesaje {
     @Column(name = "peso_neto", nullable = false, precision = 10, scale = 2)
     private BigDecimal pesoNeto;
 
+    @Column(name = "humedad_estimada", precision = 5, scale = 2)
+    private BigDecimal humedadEstimada;
+
     @Column(length = 250)
     private String observacion;
 
@@ -82,6 +85,9 @@ public class Pesaje {
     public BigDecimal getPesoNeto() { return pesoNeto; }
     public void setPesoNeto(BigDecimal pesoNeto) { this.pesoNeto = pesoNeto; }
 
+    public BigDecimal getHumedadEstimada() { return humedadEstimada; }
+    public void setHumedadEstimada(BigDecimal humedadEstimada) { this.humedadEstimada = humedadEstimada; }
+
     public String getObservacion() { return observacion; }
     public void setObservacion(String observacion) { this.observacion = observacion; }
 
@@ -106,3 +112,4 @@ public class Pesaje {
     public Long getVersion() { return version; }
     public void setVersion(Long version) { this.version = version; }
 }
+
