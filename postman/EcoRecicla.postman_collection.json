@@ -1,0 +1,1026 @@
+﻿{
+  "info": {
+    "_postman_id": "ecorecicla-api-u2-collection",
+    "name": "EcoRecicla API - Examen U2",
+    "description": "Colecci├│n completa de pruebas y endpoints para EcoAPI (Spring Boot + PostgreSQL) del Examen Unidad 2. Incluye carpetas 01 a 09, soporte para JWT, RN-01 a RN-04, SC-A a SC-D.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "tokenOperario",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "tokenSupervisor",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "tokenAdmin",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "tokenAuditor",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "rutaHoyId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "rutaAyerId",
+      "value": "2",
+      "type": "string"
+    },
+    {
+      "key": "pesajePropioId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "pesajeAjenoId",
+      "value": "2",
+      "type": "string"
+    },
+    {
+      "key": "puntoId",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 Autenticacion",
+      "item": [
+        {
+          "name": "Login Operario (operario1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "    pm.collectionVariables.set('tokenOperario', jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuario\": \"operario1\",\n  \"contrasena\": \"Eco2026*\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login Supervisor (supervisor1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "    pm.collectionVariables.set('tokenSupervisor', jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuario\": \"supervisor1\",\n  \"contrasena\": \"Eco2026*\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login Admin (admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "    pm.collectionVariables.set('tokenAdmin', jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuario\": \"admin\",\n  \"contrasena\": \"Eco2026*\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login Auditor (auditor1 - SC-B)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "    pm.collectionVariables.set('tokenAuditor', jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuario\": \"auditor1\",\n  \"contrasena\": \"Eco2026*\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login Credenciales Invalidas (401)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 401', function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuario\": \"operario1\",\n  \"contrasena\": \"PasswordErronea\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 Usuario actual",
+      "item": [
+        {
+          "name": "GET /api/v1/usuarios/me (Operario)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/usuarios/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "usuarios",
+                "me"
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /api/v1/usuarios/me (Auditor - SC-B)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenAuditor}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/usuarios/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "usuarios",
+                "me"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 Rutas",
+      "item": [
+        {
+          "name": "GET /api/v1/rutas/mia (Ruta de hoy)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/rutas/mia",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "rutas",
+                "mia"
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /api/v1/rutas/mia?fecha=2026-10-27 (Ruta de ayer)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/rutas/mia?fecha=2026-10-27",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "rutas",
+                "mia"
+              ],
+              "query": [
+                {
+                  "key": "fecha",
+                  "value": "2026-10-27"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /api/v1/rutas/{{rutaHoyId}}/puntos (Puntos de la ruta)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/rutas/{{rutaHoyId}}/puntos?pagina=0&tamanio=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "rutas",
+                "{{rutaHoyId}}",
+                "puntos"
+              ],
+              "query": [
+                {
+                  "key": "pagina",
+                  "value": "0"
+                },
+                {
+                  "key": "tamanio",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 Puntos",
+      "item": [
+        {
+          "name": "GET /api/v1/puntos (Paginado)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/puntos?pagina=0&tamanio=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "puntos"
+              ],
+              "query": [
+                {
+                  "key": "pagina",
+                  "value": "0"
+                },
+                {
+                  "key": "tamanio",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /api/v1/puntos?zona=Norte (Filtro por zona)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/puntos?zona=Norte",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "puntos"
+              ],
+              "query": [
+                {
+                  "key": "zona",
+                  "value": "Norte"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET /api/v1/puntos/{{puntoId}}",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/puntos/{{puntoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "puntos",
+                "{{puntoId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 Pesajes",
+      "item": [
+        {
+          "name": "GET /api/v1/puntos/{{puntoId}}/pesajes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/puntos/{{puntoId}}/pesajes?pagina=0&tamanio=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "puntos",
+                "{{puntoId}}",
+                "pesajes"
+              ],
+              "query": [
+                {
+                  "key": "pagina",
+                  "value": "0"
+                },
+                {
+                  "key": "tamanio",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "POST /api/v1/rutas/{{rutaHoyId}}/puntos/{{puntoId}}/pesajes (Crear con SC-C Humedad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"material\": \"CARTON\",\n  \"pesoBruto\": 45.5,\n  \"tara\": 5.0,\n  \"observacion\": \"Pesaje desde Postman con humedad estimada\",\n  \"humedadEstimada\": 14.5,\n  \"operacionId\": \"postman-uuid-pesaje-001\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/rutas/{{rutaHoyId}}/puntos/{{puntoId}}/pesajes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "rutas",
+                "{{rutaHoyId}}",
+                "puntos",
+                "{{puntoId}}",
+                "pesajes"
+              ]
+            }
+          }
+        },
+        {
+          "name": "PUT /api/v1/pesajes/{{pesajePropioId}} (Corregir Pesaje Propio RN-02)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"material\": \"CARTON\",\n  \"pesoBruto\": 50.0,\n  \"tara\": 4.5,\n  \"observacion\": \"Correccion propia autorizada\",\n  \"humedadEstimada\": 12.0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/pesajes/{{pesajePropioId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pesajes",
+                "{{pesajePropioId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "POST /api/v1/pesajes/{{pesajePropioId}}/anulacion (Anulacion Logica)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenSupervisor}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"motivo\": \"Material contaminado que no califica para reciclaje\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/pesajes/{{pesajePropioId}}/anulacion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pesajes",
+                "{{pesajePropioId}}",
+                "anulacion"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 Omisiones",
+      "item": [
+        {
+          "name": "PUT /api/v1/rutas/{{rutaHoyId}}/puntos/5/omision (Registrar Omision RN-04)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"motivo\": \"Local comercial cerrado por feriado patronal\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/rutas/{{rutaHoyId}}/puntos/5/omision",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "rutas",
+                "{{rutaHoyId}}",
+                "puntos",
+                "5",
+                "omision"
+              ]
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/v1/rutas/{{rutaHoyId}}/puntos/5/omision (Retirar Omision 204)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/rutas/{{rutaHoyId}}/puntos/5/omision",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "rutas",
+                "{{rutaHoyId}}",
+                "puntos",
+                "5",
+                "omision"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 Cierre",
+      "item": [
+        {
+          "name": "POST /api/v1/rutas/{{rutaHoyId}}/cierre (Cerrar Ruta)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenSupervisor}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/rutas/{{rutaHoyId}}/cierre",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "rutas",
+                "{{rutaHoyId}}",
+                "cierre"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 Errores y Reglas de Negocio",
+      "item": [
+        {
+          "name": "RN-01 Rechazo en Ruta Cerrada (409)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"material\": \"CARTON\",\n  \"pesoBruto\": 20.0,\n  \"tara\": 2.0,\n  \"observacion\": \"Intento en ruta cerrada\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/rutas/{{rutaAyerId}}/puntos/1/pesajes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "rutas",
+                "{{rutaAyerId}}",
+                "puntos",
+                "1",
+                "pesajes"
+              ]
+            }
+          }
+        },
+        {
+          "name": "RN-02 Rechazo Pesaje Ajeno por Operario (403)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"material\": \"CARTON\",\n  \"pesoBruto\": 30.0,\n  \"tara\": 3.0,\n  \"observacion\": \"Intento de corregir pesaje ajeno\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/pesajes/{{pesajeAjenoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pesajes",
+                "{{pesajeAjenoId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "RN-03 Rechazo Peso Bruto <= Tara (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"material\": \"CARTON\",\n  \"pesoBruto\": 5.0,\n  \"tara\": 10.0,\n  \"observacion\": \"Tara mayor que bruto\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/rutas/{{rutaHoyId}}/puntos/1/pesajes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "rutas",
+                "{{rutaHoyId}}",
+                "puntos",
+                "1",
+                "pesajes"
+              ]
+            }
+          }
+        },
+        {
+          "name": "RN-04 Rechazo Cierre con Puntos Pendientes (409)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenSupervisor}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/rutas/{{rutaHoyId}}/cierre",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "rutas",
+                "{{rutaHoyId}}",
+                "cierre"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Error 401 Sin Token",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/usuarios/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "usuarios",
+                "me"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Error 401 Token Invalido / Alterado",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer token_alterado_y_falsificado"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/usuarios/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "usuarios",
+                "me"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Error 403 Operario intenta Cerrar Ruta",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenOperario}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/rutas/{{rutaHoyId}}/cierre",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "rutas",
+                "{{rutaHoyId}}",
+                "cierre"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "09 Administracion y Auditoria",
+      "item": [
+        {
+          "name": "SC-B Rechazo Escritura para Rol AUDITOR (403)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenAuditor}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"material\": \"CARTON\",\n  \"pesoBruto\": 20.0,\n  \"tara\": 2.0,\n  \"observacion\": \"Intento de registrar como auditor\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/rutas/{{rutaHoyId}}/puntos/1/pesajes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "rutas",
+                "{{rutaHoyId}}",
+                "puntos",
+                "1",
+                "pesajes"
+              ]
+            }
+          }
+        },
+        {
+          "name": "SC-B Lectura Permitida para Rol AUDITOR (200)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{tokenAuditor}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/rutas/mia",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "rutas",
+                "mia"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
