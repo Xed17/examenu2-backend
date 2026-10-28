@@ -15,6 +15,11 @@ public record CorregirPesajeRequest(
     @DecimalMin(value = "0.00", message = "La tara no puede ser negativa")
     BigDecimal tara,
 
+    @DecimalMin(value = "0.00", message = "La humedad estimada no puede ser menor a 0%")
+    @DecimalMax(value = "100.00", message = "La humedad estimada no puede exceder el 100%")
+    BigDecimal humedadEstimada,
+
     @Size(max = 250, message = "La observacion no puede exceder 250 caracteres")
     String observacion
 ) {}
+

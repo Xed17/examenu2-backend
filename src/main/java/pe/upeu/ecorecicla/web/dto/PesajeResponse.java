@@ -11,6 +11,7 @@ public record PesajeResponse(
     BigDecimal pesoBruto,
     BigDecimal tara,
     BigDecimal pesoNeto,
+    BigDecimal humedadEstimada,
     String observacion,
     Long operarioId,
     String operarioNombre,
@@ -18,3 +19,4 @@ public record PesajeResponse(
     String motivoAnulacion,
     Long version
 ) {}
+
