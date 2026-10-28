@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ecorecicla-api
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:${DB_URL:jdbc:postgresql://localhost:5432/ecorecicla}}
+    username: ${SPRING_DATASOURCE_USERNAME:${DB_USER:eco_user}}
+    password: ${SPRING_DATASOURCE_PASSWORD:${DB_PASSWORD:eco_password}}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:c2VjdXJpdHktZXhhbWVuLXUyLWVjb3JlY2ljbGEtc2VjcmV0LWtleS0yMDI2}
+    expiration-minutes: 60
+    issuer: ecorecicla-auth
+  business-zone: ${APP_BUSINESS_ZONE:America/Lima}
+
