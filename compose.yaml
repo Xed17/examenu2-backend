@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: ecorecicla-db
+    environment:
+      POSTGRES_DB: ecorecicla
+      POSTGRES_USER: eco_user
+      POSTGRES_PASSWORD: eco_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U eco_user -d ecorecicla"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: .
+    container_name: ecorecicla-api
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/ecorecicla
+      - SPRING_DATASOURCE_USERNAME=eco_user
+      - SPRING_DATASOURCE_PASSWORD=eco_password
+      - JWT_SECRET=c2VjdXJpdHktZXhhbWVuLXUyLWVjb3JlY2ljbGEtc2VjcmV0LWtleS0yMDI2
+      - APP_BUSINESS_ZONE=America/Lima
+
+volumes:
+  pgdata:
+
